@@ -77,16 +77,16 @@ if __name__ == '__main__':
                         help="batch size of formats", type=int)
     parser.add_argument("-f", "--format", default="", metavar="FORMAT",
                         help="format of single line", type=str)
-    parser.add_argument("-s", "--signal", default="<>", metavar="SIGNAL",
-                        help="pair of signal for replacement", type=str)
+    parser.add_argument("-s", "--sign", default="<>", metavar="SIGN",
+                        help="pair of sign for replacement", type=str)
     parser.add_argument("-c", "--counter", default=1, metavar="COUNTER",
                         help="maximum value of auto counter", type=int)
     parser.add_argument("-o", "--output", default="", metavar="OUTFILE",
                         help="output file", type=str)
     args = parser.parse_args()
     print(args)
-    if len(args.signal) != 2:
-        raise ValueError("signal pair length should be 2!")
+    if len(args.sign) != 2:
+        raise ValueError("sign pair length should be 2!")
     if args.batch <= 0:
         raise ValueError("batch size of formats should be greater than 0!")
     verilazy(args)
