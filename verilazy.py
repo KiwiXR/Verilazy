@@ -29,7 +29,7 @@ def verilazy(args):
                     print("INFO: {} params to be filled [Retry {}/{}]".format(n, retry, retry_lim))
                 params = input().strip().split()
                 if len(params) != n:
-                    print("ERROR: Wrong number of params!")
+                    print("ERROR: Wrong number of params! [{} Expected]".format(n))
                     retry += 1
                     continue
                 flag = True

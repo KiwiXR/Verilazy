@@ -31,6 +31,10 @@ reg [2:0] light_<c>;
 assign light_<c> = sig<n>_<s>;
 INFO: 2 formats read.
 >> reg [2:0] light_0;
+a
+ERROR: Wrong number of params! [0 Expected]
+>> reg [2:0] light_0;
+INFO: 0 params to be filled [Retry 1/10]
 
 >> assign light_0 = sig<n>_<s>;
 h h
