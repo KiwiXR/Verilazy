@@ -10,6 +10,11 @@ def verilazy(args):
     for _ in range(args.batch):
         fmt_list.append(input())
     print("INFO: {} formats read.".format(len(fmt_list)))
+
+    f = None
+    if args.output != "":
+        f = open(args.output, 'w')
+    
     full_list = []
     for cnt in range(args.counter):
         res_list = []
@@ -44,18 +49,17 @@ def verilazy(args):
 
             if retry == retry_lim + 1:
                 raise PermissionError("Don't play with me!")
-        f = None
-        if args.output != "":
-            f = open(args.output, 'w')
+
         full_list += res_list
         for res in res_list:
             msg = "<< " + res
             print(msg)
             if f is not None:
-                f.write(msg)
+                f.write(res + '\n')
         print("INFO: Round {} OK.\n".format(cnt + 1))
-        if f is not None:
-            f.close()
+
+    if f is not None:
+        f.close()
     print("INFO: All work done!")
     print("SUM UP:\n")
     for item in full_list:
