@@ -1,9 +1,9 @@
 # Verilazy
 A semi-supervised verilog code generator for lazy people like me
 ## Usage
-To view usage, run ``python verilazy.py -h``
+To view usage, run ``python3 verilazy.py -h``
 ```
-$ python3 verilazy.py -h                                                                                            ──(Wed,Sep01)─┘
+$ python3 verilazy.py -h
 usage: python verilazy.py [-b int] [-f str] [-s str] [-c int] [-o str] [-j]
 [str lines]
 
@@ -27,7 +27,7 @@ format: {<n> : number, <s> : string, <c> : auto counter} Note that numbers are s
 ## Example
 ### Case 1:
 ```
-$ python3 verilazy.py -b 2 -c 2                                                                        [13h49m] ✹
+$ python3 verilazy.py -b 2 -c 2
 Namespace(batch=2, counter=2, format='', jump=False, output='', sign='<>')
 reg [2:0] light_<c>;
 assign light_<c> = sig<n>_<s>;
@@ -67,7 +67,7 @@ assign light_1 = sig0_l;
 ```
 ### Case 2:
 ```
-$ python3 verilazy.py -b 1 -f 'wire [3:0] digital_<c>;' -o 'out.txt'                                   [13h51m] ✹
+$ python3 verilazy.py -b 1 -f 'wire [3:0] digital_<c>;' -o 'out.txt'
 Namespace(batch=1, counter=1, format='wire [3:0] digital_<c>;', jump=False, output='out.txt', sign='<>')
 INFO: 1 formats read.
 >> wire [3:0] digital_0;
@@ -83,7 +83,7 @@ wire [3:0] digital_0;
 ```
 ### Case 3:
 ```
-$ python3 verilazy.py -b 1 -f 'out_<c> = in_a_<c> + in_b_<c>;' -c 5 -j                                 [13h56m] ✹
+$ python3 verilazy.py -b 1 -f 'out_<c> = in_a_<c> + in_b_<c>;' -c 5 -j
 Namespace(batch=1, counter=5, format='out_<c> = in_a_<c> + in_b_<c>;', jump=True, output='', sign='<>')
 INFO: 1 formats read.
 >> out_0 = in_a_0 + in_b_0;
