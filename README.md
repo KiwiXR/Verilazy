@@ -3,8 +3,8 @@ A semi-supervised verilog code generator for lazy people like me
 ## Usage
 To view usage, run ``python verilazy.py -h``
 ```
-$ python3 verilazy.py -h
-usage: python verilazy.py [-b int] [-f str] [-s str] [-c int] [-o str]
+$ python3 verilazy.py -h                                                                                            ──(Wed,Sep01)─┘
+usage: python verilazy.py [-b int] [-f str] [-s str] [-c int] [-o str] [-j]
 [str lines]
 
 Verilazy: Verilog Lazy Code Generator
@@ -20,14 +20,15 @@ optional arguments:
                         maximum value of auto counter
   -o OUTFILE, --output OUTFILE
                         output file
+  -j, --jump            jump over formats with zero params
 
 format: {<n> : number, <s> : string, <c> : auto counter} Note that numbers are same as strings except for extra type check
 ```
 ## Example
 ### Case 1:
 ```
-$ python3 verilazy.py -b 2 -c 2
-Namespace(batch=2, counter=2, format='', output='', sign='<>')
+$ python3 verilazy.py -b 2 -c 2                                                                        [13h49m] ✹
+Namespace(batch=2, counter=2, format='', jump=False, output='', sign='<>')
 reg [2:0] light_<c>;
 assign light_<c> = sig<n>_<s>;
 INFO: 2 formats read.
@@ -66,17 +67,57 @@ assign light_1 = sig0_l;
 ```
 ### Case 2:
 ```
-$ python3 verilazy.py -b 1 -f 'wire [3:0] digital_<c>' -o 'out.txt'
-Namespace(batch=1, counter=1, format='wire [3:0] digital_<c>', output='out.txt', sign='<>')
+$ python3 verilazy.py -b 1 -f 'wire [3:0] digital_<c>;' -o 'out.txt'                                   [13h51m] ✹
+Namespace(batch=1, counter=1, format='wire [3:0] digital_<c>;', jump=False, output='out.txt', sign='<>')
 INFO: 1 formats read.
->> wire [3:0] digital_0
+>> wire [3:0] digital_0;
 
-<< wire [3:0] digital_0
+<< wire [3:0] digital_0;
 INFO: Round 1 OK.
 
 INFO: All work done!
 SUM UP:
 
-wire [3:0] digital_0
+wire [3:0] digital_0;
+
+```
+### Case 3:
+```
+$ python3 verilazy.py -b 1 -f 'out_<c> = in_a_<c> + in_b_<c>;' -c 5 -j                                 [13h56m] ✹
+Namespace(batch=1, counter=5, format='out_<c> = in_a_<c> + in_b_<c>;', jump=True, output='', sign='<>')
+INFO: 1 formats read.
+>> out_0 = in_a_0 + in_b_0;
+INFO: Auto jump
+<< out_0 = in_a_0 + in_b_0;
+INFO: Round 1 OK.
+
+>> out_1 = in_a_1 + in_b_1;
+INFO: Auto jump
+<< out_1 = in_a_1 + in_b_1;
+INFO: Round 2 OK.
+
+>> out_2 = in_a_2 + in_b_2;
+INFO: Auto jump
+<< out_2 = in_a_2 + in_b_2;
+INFO: Round 3 OK.
+
+>> out_3 = in_a_3 + in_b_3;
+INFO: Auto jump
+<< out_3 = in_a_3 + in_b_3;
+INFO: Round 4 OK.
+
+>> out_4 = in_a_4 + in_b_4;
+INFO: Auto jump
+<< out_4 = in_a_4 + in_b_4;
+INFO: Round 5 OK.
+
+INFO: All work done!
+SUM UP:
+
+out_0 = in_a_0 + in_b_0;
+out_1 = in_a_1 + in_b_1;
+out_2 = in_a_2 + in_b_2;
+out_3 = in_a_3 + in_b_3;
+out_4 = in_a_4 + in_b_4;
 
 ```

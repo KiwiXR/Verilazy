@@ -21,6 +21,11 @@ def verilazy(args):
         for fmt in fmt_list:
             fmt = re.sub(r'<c>', str(cnt), fmt)
             n = len(re.findall(r'<[ns]>', fmt))
+            if n == 0 and args.jump:
+                print(">> " + fmt)
+                print("INFO: Auto jump")
+                res_list.append(fmt)
+                continue
             retry = 0
             retry_lim = 10
             while retry <= retry_lim:
@@ -69,7 +74,7 @@ def verilazy(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Verilazy: Verilog Lazy Code Generator",
-                                     usage="python verilazy.py [-b int] [-f str] [-s str] [-c int] [-o str]\n"
+                                     usage="python verilazy.py [-b int] [-f str] [-s str] [-c int] [-o str] [-j]\n"
                                            "[str lines]",
                                      epilog="format: {<n> : number, <s> : string, <c> : auto counter}\n"
                                             "Note that numbers are same as strings except for extra type check")
@@ -83,6 +88,8 @@ if __name__ == '__main__':
                         help="maximum value of auto counter", type=int)
     parser.add_argument("-o", "--output", default="", metavar="OUTFILE",
                         help="output file", type=str)
+    parser.add_argument("-j", "--jump", default=False,
+                        help="jump over formats with zero params", action='store_true')
     args = parser.parse_args()
     print(args)
     if len(args.sign) != 2:
