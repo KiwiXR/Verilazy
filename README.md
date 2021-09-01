@@ -105,7 +105,7 @@ wire [3:0] digital_2;
 
 ### Case 3: Advanced
 
-``` shell
+``` bash
 $ python3 verilazy.py -b 2 -f 'out_<c> = in_a_<c> + in_b_<c>;' -c 5 -j
 Namespace(batch=2, counter=5, format='out_<c> = in_a_<c> + in_b_<c>;', jump=True, output='', sign='<>')
 assign led_<s> = out_<c>;
