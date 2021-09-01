@@ -6,7 +6,7 @@ A semi-supervised verilog code generator for lazy people like me
 
 To view usage, run ``python3 verilazy.py -h``
 
-``` shell
+``` text
 $ python3 verilazy.py -h
 usage: python verilazy.py [-b int] [-f str] [-s str] [-c int] [-o str] [-j]
 [str lines]
@@ -33,7 +33,7 @@ format: {<n> : number, <s> : string, <c> : auto counter} Note that numbers are s
 
 ### Case 1: Basic
 
-``` shell
+``` text
 $ python3 verilazy.py -b 2 -c 2
 Namespace(batch=2, counter=2, format='', jump=False, output='', sign='<>')
 reg [2:0] light_<c>;
@@ -75,7 +75,7 @@ assign light_1 = sig0_l;
 
 ### Case 2: Inline Format, Auto Jump and Save to File
 
-``` shell
+``` text
 $ python3 verilazy.py -b 1 -f 'wire [3:0] digital_<c>;' -c 3 -j -o 'out.txt'
 Namespace(batch=1, counter=3, format='wire [3:0] digital_<c>;', jump=True, output='out.txt', sign='<>')
 INFO: 1 formats read.
@@ -105,7 +105,7 @@ wire [3:0] digital_2;
 
 ### Case 3: Advanced
 
-``` bash
+``` text
 $ python3 verilazy.py -b 2 -f 'out_<c> = in_a_<c> + in_b_<c>;' -c 5 -j
 Namespace(batch=2, counter=5, format='out_<c> = in_a_<c> + in_b_<c>;', jump=True, output='', sign='<>')
 assign led_<s> = out_<c>;
