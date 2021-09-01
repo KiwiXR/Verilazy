@@ -50,26 +50,26 @@ h h
 ERROR: Wrong type of param 0: h [Integer Expected]
 >> assign light_0 = sig<n>_<s>;
 INFO: 2 params to be filled [Retry 1/10]
-1 h
+1 hi
 << reg [2:0] light_0;
-<< assign light_0 = sig1_h;
+<< assign light_0 = sig1_hi;
 INFO: Round 1 OK.
 
 >> reg [2:0] light_1;
 
 >> assign light_1 = sig<n>_<s>;
-0 l
+0 lo
 << reg [2:0] light_1;
-<< assign light_1 = sig0_l;
+<< assign light_1 = sig0_lo;
 INFO: Round 2 OK.
 
 INFO: All work done!
 SUM UP:
 
 reg [2:0] light_0;
-assign light_0 = sig1_h;
+assign light_0 = sig1_hi;
 reg [2:0] light_1;
-assign light_1 = sig0_l;
+assign light_1 = sig0_lo;
 
 ```
 
