@@ -1,6 +1,8 @@
 # Verilazy
 
-A semi-supervised verilog code generator for lazy people like me
+A semi-supervised Verilog code generator for lazy people like me.
+
+> Verilazy, as indicated by it's name, is originally written for Verilog, but you can try to use it in any language featuring **repetitive formats**.
 
 ## Usage
 
