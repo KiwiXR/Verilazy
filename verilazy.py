@@ -16,11 +16,13 @@ def verilazy(args):
         f = open(args.output, 'w')
     
     full_list = []
+    r_str_c = re.escape(args.sign[0]) + 'c' + re.escape(args.sign[1])
+    r_str_ns = re.escape(args.sign[0]) + '[ns]' + re.escape(args.sign[1])
     for cnt in range(args.counter):
         res_list = []
         for fmt in fmt_list:
-            fmt = re.sub(r'<c>', str(cnt), fmt)
-            n = len(re.findall(r'<[ns]>', fmt))
+            fmt = re.sub(r_str_c, str(cnt), fmt)
+            n = len(re.findall(r_str_ns, fmt))
             if n == 0 and args.jump:
                 print(">> " + fmt)
                 print("INFO: Auto jump")
@@ -40,13 +42,13 @@ def verilazy(args):
                 flag = True
                 tmp_fmt = fmt
                 for i in range(n):
-                    r_type = re.search(r'<[ns]>', tmp_fmt).group()
+                    r_type = re.search(r_str_ns, tmp_fmt).group()
                     if r_type[1] == 'n' and not params[i].isdigit():
                         print("ERROR: Wrong type of param {}: {} [Integer Expected]".format(i, params[i]))
                         retry += 1
                         flag = False
                         break
-                    tmp_fmt = re.sub(r_type, params[i], tmp_fmt, count=1)
+                    tmp_fmt = re.sub(re.escape(r_type), params[i], tmp_fmt, count=1)
                 if not flag:
                     continue
                 res_list.append(tmp_fmt)

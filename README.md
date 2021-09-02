@@ -73,11 +73,11 @@ assign light_1 = sig0_lo;
 
 ```
 
-### Case 2: Inline Format, Auto Jump and Save to File
+### Case 2: Inline Format, Auto Jump, Save to File, and Customized Sign
 
 ``` text
-$ python3 verilazy.py -b 1 -f 'wire [3:0] digital_<c>;' -c 3 -j -o 'out.txt'
-Namespace(batch=1, counter=3, format='wire [3:0] digital_<c>;', jump=True, output='out.txt', sign='<>')
+$ python3 verilazy.py -b 1 -f 'wire [3:0] digital_#c!;' -c 3 -j -o 'out.txt' -s '#!'
+Namespace(batch=1, counter=3, format='wire [3:0] digital_#c!;', jump=True, output='out.txt', sign='#!')
 INFO: 1 formats read.
 >> wire [3:0] digital_0;
 INFO: Auto jump
